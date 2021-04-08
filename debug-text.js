@@ -1,7 +1,7 @@
 AFRAME.registerComponent('debug-custom', {
     schema: {
       text: {default: 'Console'},
-      visible: {default: true},
+      visible: {default: false},
     },
     init() {
       this.debugTextElement = document.getElementById('debug-text')

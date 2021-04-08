@@ -11,11 +11,7 @@ AFRAME.registerComponent('dashboard-item', {
     let el = this.el;
     let interactable = false;
 
-    let distance = 15
-
     this.portalOverlay = document.getElementById('portal-overlay')
-    this.portalBtm = document.getElementById('portal-btm')
-    this.portalReform = document.getElementById('portal-reform')
     this.infoBtn = document.getElementById('info-button')
     this.closeBtn =  document.getElementById('close-button')
     this.itemDesc = document.getElementById('item-desc')
@@ -28,10 +24,11 @@ AFRAME.registerComponent('dashboard-item', {
       return angle * (Math.PI / 180);
     }
 
-    data.x = distance*Math.cos(this.toRadians(data.rot))
-    data.z = -2 + distance*Math.sin(this.toRadians(data.rot))
+    data.x = 25*Math.cos(this.toRadians(data.rot))
+    data.z = -2 + 8*Math.sin(this.toRadians(data.rot))
 
     el.setAttribute('rotation', '0 ' + (-1*(data.rot+90)) + ' 0');
+    el.setAttribute('position', data.x +' ' + data.y + ' ' + data.z);
     // console.log(el.getAttribute('position'));
     const startRot = el.getAttribute("rotation")
     const startScale = el.getAttribute("scale")
@@ -40,40 +37,21 @@ AFRAME.registerComponent('dashboard-item', {
     const endRotString = startRot.x + ' ' + (startRot.y+360) + ' ' + startRot.z
 
     const startScaleString = startScale.x + ' ' + startScale.y + ' ' + startScale.z
-    const endScaleString = (startScale.x*2.5) + ' ' + (startScale.y*2.5) + ' ' + (startScale.z*2.5)
+    const endScaleString = (startScale.x*3) + ' ' + (startScale.y*3) + ' ' + (startScale.z*3)
 
-    const startPosString = data.x +' ' + data.y + ' ' + data.z
-    // const endPosString = 15*Math.cos(this.toRadians(data.rot)) +' ' + data.y + ' ' +  -2 + 15*Math.sin(this.toRadians(data.rot))
-
-    el.setAttribute('position', startPosString);
     this.hoveredOn = () => {
       console.log('hovered on ' + el.object3D);
       interactable = true;
       el.setAttribute('animation__zoomin', 'property: scale; to: ' + endScaleString + '; easing: easeInOutSine; dur: 5000')
-
-      // if(data.autoRotate){
-      //   el.setAttribute('animation__zoomin', 'property: scale; to: ' + endScaleString + '; easing: easeInOutSine; dur: 5000')
-      // } else {
-      //   el.setAttribute('animation__zoomin', 'property: position; to: ' + endPosString + '; easing: easeInOutSine; dur: 5000')
-      // }
       // el.removeAttribute('animation')
       // el.setAttribute('animation', 'property: rotation; to: ' + startRotString + '; easing: linear; dur: 1500; loop: false')
-
-      // show portal overlay & reform button
-      this.portalOverlay.style.visibility = "visible"
-      this.portalReform.style.visibility = "visible"
     }
     this.hoveredOff = () => {
       this.camera.setAttribute('look-controls', 'enabled', true);
 
-      // this.infoBtn.style.visibility = "hidden"
+      this.infoBtn.style.visibility = "hidden"
       this.closeBtn.style.visibility = "hidden"
       this.itemDesc.style.visibility = "hidden"
-      // this.portalOverlay.style.visibility = "hidden"
-      // this.portalReform.style.visibility = "hidden"
-      // this.portalBtm.style.visibility = "visible"
-      // console.log('portal bottom visible')
-
       interactable = false;
       console.log('hovered off ' + el);
       // el.removeAttribute('animation__zoomin')
@@ -93,18 +71,18 @@ AFRAME.registerComponent('dashboard-item', {
       }
     }
 
+    this.readyForTap = () => {
+
+    }
+
     this.readyForMV = () => {
       if(interactable){
         console.log("Load the model now...")
-        // show reform button
-        this.portalReform.style.visibility = "visible"
         // make text and ui visible
         this.infoBtn.style.visibility = "visible"
         this.closeBtn.style.visibility = "visible"
         this.itemDesc.style.visibility = "visible"
         this.portalOverlay.style.visibility = "hidden"
-        this.portalBtm.style.visibility = "hidden"
-        this.portalReform.style.visibility = "hidden"
         this.camera.setAttribute('look-controls', 'enabled', false);
       }
       // el.removeAttribute('animation__reset');
@@ -112,7 +90,7 @@ AFRAME.registerComponent('dashboard-item', {
     }
     el.addEventListener('mouseenter', this.hoveredOn)
     el.addEventListener('mouseleave', this.hoveredOff)
-    el.addEventListener('animationcomplete__zoomin', this.readyForMV)
+    el.addEventListener('animationcomplete__zoomin', this.readyForTap)
     el.addEventListener('animationcomplete', this.resetRotation)
     this.closeBtn.addEventListener('click', this.hoveredOff)
     this.resetRotation();
