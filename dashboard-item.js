@@ -11,6 +11,8 @@ AFRAME.registerComponent('dashboard-item', {
     let el = this.el;
     let interactable = false;
 
+    let distance = 15
+
     this.portalOverlay = document.getElementById('portal-overlay')
     this.portalBtm = document.getElementById('portal-btm')
     this.portalReform = document.getElementById('portal-reform')
@@ -26,8 +28,8 @@ AFRAME.registerComponent('dashboard-item', {
       return angle * (Math.PI / 180);
     }
 
-    data.x = 25*Math.cos(this.toRadians(data.rot))
-    data.z = -2 + 25*Math.sin(this.toRadians(data.rot))
+    data.x = distance*Math.cos(this.toRadians(data.rot))
+    data.z = -2 + distance*Math.sin(this.toRadians(data.rot))
 
     el.setAttribute('rotation', '0 ' + (-1*(data.rot+90)) + ' 0');
     // console.log(el.getAttribute('position'));
@@ -64,11 +66,11 @@ AFRAME.registerComponent('dashboard-item', {
     this.hoveredOff = () => {
       this.camera.setAttribute('look-controls', 'enabled', true);
 
-      this.infoBtn.style.visibility = "hidden"
+      // this.infoBtn.style.visibility = "hidden"
       this.closeBtn.style.visibility = "hidden"
       this.itemDesc.style.visibility = "hidden"
-      this.portalOverlay.style.visibility = "hidden"
-      this.portalReform.style.visibility = "hidden"
+      // this.portalOverlay.style.visibility = "hidden"
+      // this.portalReform.style.visibility = "hidden"
       // this.portalBtm.style.visibility = "visible"
       // console.log('portal bottom visible')
 

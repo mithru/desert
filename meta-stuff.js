@@ -30,8 +30,12 @@ AFRAME.registerComponent('meta-stuff', {
       this.doorShadow = document.getElementById('doorshadow')
       this.doorFrame = document.getElementById('doorframe')
       this.platform = document.getElementById('base')
+      this.portalOverlay = document.getElementById('portal-overlay')
+
       this.doorCollider.object3D.visible = false
       console.log(this.doorCollider.object3D.visible);
+
+      this.portalReform = document.getElementById('portal-reform')
       // this.hiderWalls.object3D.visible = false
       // this.allContent.object3D.visible = false
       this.positionSet = false;
@@ -60,6 +64,9 @@ AFRAME.registerComponent('meta-stuff', {
       this.showPortalElements = () => {
         this.doorCollider.object3D.visible = true
         this.dashboardElements.object3D.visible = true
+        this.portalReform.style.visibility = "visible"
+        this.portalOverlay.style.visibility = "visible"
+
         this.envWalls.object3D.visible = false;
         this.reverseWall.setAttribute('animation' , 'property: position; to: 0 0 10; easing: easeInOutQuad; loop: false; dur: 3000')
       }
