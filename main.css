@@ -251,8 +251,9 @@ img {
   /*display: flex;*/
 }
 #reform-icon {
-  height: 40px;
-
+  height: 50px;
+  margin: auto;
+  padding-bottom: 0.5em;
 }
 #item-overlay {
 /*background-color:rgba(0,0,0,0.2);*/
@@ -279,7 +280,14 @@ img {
   font-size: 1.8em;
   color: white;
   line-height: 1.1em;
+  padding-bottom:
   /*z-index: 50;*/
+}
+
+.icon-text{
+  color: white;
+  padding: 0.2em;
+  font-size: 0.8em;
 }
 
 #item-desc-2 {
@@ -292,6 +300,7 @@ img {
   font-family: 'Roboto', sans-serif;
   font-size: 0.7em;
   color: white;
+  padding-top: 0.8em;
   /*z-index: 50;*/
 }
 
