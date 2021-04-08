@@ -75,6 +75,7 @@ AFRAME.registerComponent('dashboard-item', {
       this.closeBtn.style.visibility = "hidden"
       this.itemDesc.style.visibility = "hidden"
       this.portalReform.style.visibility = "visible"
+      this.tapIcon.style.visibility = "hidden"
 
       // this.portalOverlay.style.visibility = "hidden"
       // this.portalReform.style.visibility = "hidden"
