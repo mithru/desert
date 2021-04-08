@@ -38,7 +38,7 @@ AFRAME.registerComponent('dashboard-item', {
     const endRotString = startRot.x + ' ' + (startRot.y+360) + ' ' + startRot.z
 
     const startScaleString = startScale.x + ' ' + startScale.y + ' ' + startScale.z
-    const endScaleString = (startScale.x*3) + ' ' + (startScale.y*3) + ' ' + (startScale.z*3)
+    const endScaleString = (startScale.x*2.5) + ' ' + (startScale.y*2.5) + ' ' + (startScale.z*2.5)
 
     const startPosString = data.x +' ' + data.y + ' ' + data.z
     // const endPosString = 15*Math.cos(this.toRadians(data.rot)) +' ' + data.y + ' ' +  -2 + 15*Math.sin(this.toRadians(data.rot))
