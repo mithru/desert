@@ -67,11 +67,15 @@ AFRAME.registerComponent('dashboard-item', {
       // this.portalReform.style.visibility = "visible"
     }
     this.hoveredOff = () => {
+      this.infoBtn.style.visibility = "hidden"
+
       this.camera.setAttribute('look-controls', 'enabled', true);
 
       // this.infoBtn.style.visibility = "hidden"
       this.closeBtn.style.visibility = "hidden"
       this.itemDesc.style.visibility = "hidden"
+      this.portalReform.style.visibility = "visible"
+
       // this.portalOverlay.style.visibility = "hidden"
       // this.portalReform.style.visibility = "hidden"
       // this.portalBtm.style.visibility = "visible"
@@ -119,7 +123,7 @@ AFRAME.registerComponent('dashboard-item', {
       if(interactable){
         this.tapIcon.style.visibility = "visible"
         this.waitingForTap = true;
-        this.tapIcon.addEventListener('click', this.readyForMV)    
+        this.tapIcon.addEventListener('click', this.readyForMV)
       }
     }
       // this.tapIcon.style.visibility = "visible"
